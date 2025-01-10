@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elderly People Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        label {
+            font-size: 18px;
+            margin: 10px 0;
+            display: block;
+        }
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Survey for Elderly People</h1>
+    <form id="surveyForm">
+        <!-- Personal Information Section -->
+        <label for="name">What is your name?</label>
+        <input type="text" id="name" name="name" required>
+        <span id="nameError" class="error"></span>
+
+        <label for="email">What is your email address?</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" class="error"></span>
+
+        <!-- General Questions Section -->
+        <label for="ageGroup">What is your age group?</label>
+        <select id="ageGroup" name="ageGroup" required>
+            <option value="">Select Age Group</option>
+            <option value="60-70">60-70</option>
+            <option value="71-80">71-80</option>
+            <option value="81+">81+</option>
+        </select>
+
+        <label for="health">How would you rate your overall health?</label>
+        <select id="health" name="health" required>
+            <option value="">Select Health Status</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Poor">Poor</option>
+        </select>
+
+        <label for="technology">How comfortable are you with using technology (smartphones, computers, etc.)?</label>
+        <select id="technology" name="technology" required>
+            <option value="">Select Comfort Level</option>
+            <option value="Very Comfortable">Very Comfortable</option>
+            <option value="Somewhat Comfortable">Somewhat Comfortable</option>
+            <option value="Not Comfortable">Not Comfortable</option>
+        </select>
+
+        <label for="comments">Do you have any additional comments or suggestions for improving services for elderly people?</label>
+        <textarea id="comments" name="comments" rows="4"></textarea>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit Survey">
+    </form>
+    <p id="successMessage" style="color: green; display: none;">Thank you for participating in the survey!</p>
+</div>
+
+<script>
+    // JavaScript to handle form validation and submission
+    document.getElementById("surveyForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Clear previous error messages
+        document.getElementById("nameError").textContent = '';
+        document.getElementById("emailError").textContent = '';
+        
+        // Validation
+        let isValid = true;
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+
+        if (name === "") {
+            document.getElementById("nameError").textContent = "Name is required.";
+            isValid = false;
+        }
+        if (email === "") {
+            document.getElementById("emailError").textContent = "Email is required.";
+            isValid = false;
+        }
+
+        // If valid, show success message and clear form
+        if (isValid) {
+            document.getElementById("surveyForm").reset();
+            document.getElementById("successMessage").style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>
